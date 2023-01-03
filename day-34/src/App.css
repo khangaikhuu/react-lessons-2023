@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
 }
@@ -13,21 +12,19 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.thumbnail{
-  width: 300px;
-  height: 200px;
+.my-text{
+  background-color: #61dafb;
 }
 
 .App-header {
-  background-color: #ffffff;
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
+  color: white;
 }
 
 .App-link {
