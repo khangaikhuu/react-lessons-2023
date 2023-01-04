@@ -9,13 +9,13 @@ class Product extends React.Component {
         </div>
         <div className="description-container">
           <div className="description">
-            <a>Fort Knight</a>
+            <a>{this.props.title}</a>
             <p>Authentic reseanniance actor, deliverd in just two weeks</p>
           </div>
-          <div className="extra">
+          {/* <div className="extra">
             <span> Submitted By: </span>
             <img className="ui avatar image" src="images/avatars/daniel.jpg"/>
-          </div>
+          </div> */}
         </div>
       </div>
     );
