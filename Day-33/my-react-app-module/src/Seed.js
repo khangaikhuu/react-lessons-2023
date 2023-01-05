@@ -49,10 +49,25 @@ const bannerProducts= [
 
   },
   {
-    thumbnail :'adfadff',
+    thumbnail :'adfadff',       
     title: "Desktop & Speacker",
     items: 6
 
+  }
+]
+
+const menus = [
+  {
+    title: 'Home',
+    children: [
+      {
+        title: 'Popular',
+        position: 1,
+      }, 
+      {
+        title
+      }
+    ]
   }
 ]
 export default products;
