@@ -1,20 +1,13 @@
 import './App.css';
-import Button from './components/Button';
-import ParentToolbar from './components/ParentToolbar';
-import SignUp from './components/SignUp';
-import Toolbar from './components/Toolbar';
-import ToolbarNext from './components/ToolbarNext';
+import ProductList from './components/ProductList';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Day-38 - React Events</h1> 
-      <Button />
-      <Toolbar />
-      <ToolbarNext />
-      <ParentToolbar />
-      <SignUp />
-    </div>
+      <div class="main ui text container">
+        <h1 class="ui dividing centered header">Popular Products</h1>
+        <div id="content"></div>
+        <ProductList />
+      </div>
   );
 }
 
