@@ -6,6 +6,20 @@ export default function ProductList() {
   
   function handleProductUpVote(productId) {
     console.log(productId + " was upvoted.");
+    console.log(productsList)
+    const nextProducts = productsList.map((product) => {
+      if (product.id === productId) {
+        return Object.assign({}, product, {
+          votes: product.votes + 1,
+        });
+      } else {
+        return product;
+      }
+    });
+  
+    setProductsList(nextProducts)
+    console.log(productsList)
+    console.log(nextProducts)
   }
   const productComponents = productsList.map((product) => (
     <Product
