@@ -9,7 +9,7 @@ export default function Product(props) {
         <div className="header">
           <a
             onClick={() => {
-              props.onVote();
+              props.onVote(props.id);
             }}
           >
             <i className="large caret up icon" />
