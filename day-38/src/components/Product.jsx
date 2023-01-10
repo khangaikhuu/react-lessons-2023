@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { useState } from "react";
 import { Rating }from 'react-simple-star-rating'
 
@@ -6,6 +7,10 @@ export default function Product(props) {
   
   const [votes, setVotes] = useState(props.votes)
   const [stars, setStars] = useState(props.stars)
+
+  useEffect(() => {
+    console.log('updated')
+  }, [])
 
   function handDownVote(){
     setStars(stars - 1)
@@ -19,10 +24,6 @@ export default function Product(props) {
       setStars(stars + 1)
     }
     console.log(stars)
-
-
-    
-
     // console.log(props.id)
     // let newProducts = []
     // const foundProduct = products.map(product => {
