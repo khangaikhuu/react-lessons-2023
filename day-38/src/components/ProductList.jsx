@@ -12,17 +12,6 @@ export default function ProductList() {
       }
     })
     console.log(foundProduct[0].votes)
-
-
-
-
-
-
-
-
-
-
-
     
     // console.log(productsList)
     // const nextProducts = productsList.map((product) => {

@@ -4,8 +4,6 @@ import { useState } from "react";
 import { Rating }from 'react-simple-star-rating'
 
 export default function Product(props) {
-  
-  const [votes, setVotes] = useState(props.votes)
   const [stars, setStars] = useState(props.stars)
 
   useEffect(() => {
@@ -16,7 +14,6 @@ export default function Product(props) {
     setStars(stars - 1)
   }
   function handleUpVote (props){
-    setVotes(votes + 1)
 
     if (stars > 5) {
       setStars(0)
@@ -46,11 +43,11 @@ export default function Product(props) {
       <div className="middle aligned content">
         <div className="header">
           <a
-            onClick={()=> handleUpVote(props)}
+            onClick={()=> props.onVote(props.id)}
           >
             <i className="large caret up icon" />
           </a>
-          {votes}
+          {props.votes}
         </div>
         <div className="description">
           <a href={props.url}>{props.title}</a>
