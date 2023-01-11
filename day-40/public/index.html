@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,12 +22,13 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -39,5 +38,94 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+  <canvas id="game"></canvas>
+  <script>
+    // Get the canvas element
+    var canvas = document.getElementById("game");
+    var ctx = canvas.getContext("2d");
+
+    // Set canvas size
+    canvas.width = 800;
+    canvas.height = 600;
+
+    // Create player object
+    var player = {
+      x: 50,
+      y: 250,
+      width: 20,
+      height: 20,
+      jump: function () {
+        this.y -= 50;
+      }
+    };
+
+    // Create pipes array
+    var pipes = [];
+
+    // Create new pipe
+    function createPipe() {
+      var pipe = {
+        x: canvas.width,
+        y: Math.random() * (canvas.height - 200) + 100,
+        width: 50,
+        height: 200
+      };
+      pipes.push(pipe);
+    }
+
+    // Move pipes
+    function movePipes() {
+      for (var i = 0; i < pipes.length; i++) {
+        pipes[i].x -= 2;
+      }
+    }
+
+    // Draw player
+    function drawPlayer() {
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    }
+
+    // Draw pipes
+    function drawPipes() {
+      for (var i = 0; i < pipes.length; i++) {
+        ctx.fillRect(pipes[i].x, 0, pipes[i].width, pipes[i].y);
+        ctx.fillRect(pipes[i].x, pipes[i].y + pipes[i].height, pipes[i].width, canvas.height);
+      }
+    }
+
+    // Check for collision
+    function checkCollision() {
+      for (var i = 0; i < pipes.length; i++) {
+        if (player.x + player.width > pipes[i].x && player.x < pipes[i].x + pipes[i].width) {
+          if (player.y < pipes[i].y || player.y + player.height > pipes[i].y + pipes[i].height) {
+            alert("Game over!");
+          }
+        }
+      }
+    }
+
+    // Game loop
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      movePipes();
+      drawPlayer();
+      drawPipes();
+      checkCollision();
+      requestAnimationFrame(loop);
+    }
+
+    // Handle user input
+    document.addEventListener("keydown", function (event) {
+      if (event.code === "Space") {
+        player.jump();
+      }
+    });
+
+    // Start game
+    createPipe();
+    loop();
+  </script>
+
+</body>
+
 </html>
