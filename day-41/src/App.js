@@ -4,6 +4,7 @@ import Counter from './components/Counter';
 import UpdateArrays from './components/UpdateArrays';
 import List from './components/SpreadArray';
 import UpdatingObjects from './components/UpdatingObjects';
+import Exercises from './components/Exercises';
  
 function App() {
   const [counter, setCounter] = useState(0);
@@ -21,9 +22,14 @@ function App() {
     <div className="App">
       <h1>Day-41 - React States</h1>
 
-      <UpdatingObjects />
+      <Exercises />
+
+
+
+
+      {/* <UpdatingObjects />
       <List />
-      <UpdateArrays />
+      <UpdateArrays /> */}
 
 
 
