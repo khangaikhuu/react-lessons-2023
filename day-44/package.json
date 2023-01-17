@@ -1,5 +1,5 @@
 {
-  "name": "day-38",
+  "name": "day-44",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,6 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
-    "react-simple-star-rating": "^5.1.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

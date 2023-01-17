@@ -1,14 +1,11 @@
-
-import { useEffect } from "react";
 import { useState } from "react";
 import { Rating }from 'react-simple-star-rating'
+import {useLocation} from 'react-router-dom'
 
 export default function Product(props) {
   const [stars, setStars] = useState(props.stars)
-
-  useEffect(() => {
-    console.log('updated')
-  }, [])
+  const location = useLocation();
+  const data = location.state;
 
   function handDownVote(){
     setStars(stars - 1)
@@ -34,6 +31,8 @@ export default function Product(props) {
 
 
   }
+
+
   return (
     <div className="item">
       <div className="image">
@@ -61,6 +60,7 @@ export default function Product(props) {
           initialValue={stars}
         />
       </div>
+    
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import './App.css';
-import Button from './components/Button';
-// import ProductList from './components/ProductList';
+import { Outlet } from 'react-router-dom'
+import ProductList from './components/ProductList';
 import products from './data/seed';
 import Product from './components/Product';
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
 
@@ -35,8 +36,6 @@ function App() {
   }
 
   const productComponents = productList.map((product) => {
-    console.log(product)
-    
     return (
       <Product
         key={"product-" + product.id}
@@ -53,12 +52,17 @@ function App() {
     )
   });
 
+
   return (
     <div className="main ui text container">
       <h1 className="ui dividing centered header">Popular Products</h1>
       <div id="content"></div>
-      <div className="ui unstackable items">{productComponents}</div>;
-      <Button />
+      <Routes>
+        <Route path='/' element={<ProductList />} />
+        <Route path="/product/:id" element={<Product />} />
+      </Routes>
+      <Outlet />
+      
     </div>
   );
 }

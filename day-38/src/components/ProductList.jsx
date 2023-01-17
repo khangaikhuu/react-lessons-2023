@@ -1,18 +1,17 @@
 import Product from "./Product";
 import products from "../data/seed";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 export default function ProductList() {
-  
   function handleProductUpVote(productId) {
     console.log(productId + " was upvoted.");
 
-    const foundProduct = products.filter(product => {
-      if(product.id == productId) {
-        return product
+    const foundProduct = products.filter((product) => {
+      if (product.id == productId) {
+        return product;
       }
-    })
-    console.log(foundProduct[0].votes)
-    
+    });
+    console.log(foundProduct[0].votes);
+
     // console.log(productsList)
     // const nextProducts = productsList.map((product) => {
     //   if (product.id === productId) {
@@ -23,23 +22,29 @@ export default function ProductList() {
     //     return product;
     //   }
     // });
-  
+
     // setProductsList(nextProducts)
     // console.log(nextProducts)
   }
+  const myData = {
+    name: "Some thing",
+    price: 123,
+  };
   const productComponents = products.map((product) => (
-    <Product
-      key={"product-" + product.id}
-      id={product.id}
-      title={product.title}
-      description={product.description}
-      url={product.url}
-      votes={product.votes}
-      submitterAvatarUrl={product.submitterAvatarUrl}
-      productImageUrl={product.productImageUrl}
-      onVote={handleProductUpVote}
-      stars={product.stars}
-    />
+    <Link to={`/product/${product.id}`} state={product}>
+      <Product
+        key={"product-" + product.id}
+        id={product.id}
+        title={product.title}
+        description={product.description}
+        url={product.url}
+        votes={product.votes}
+        submitterAvatarUrl={product.submitterAvatarUrl}
+        productImageUrl={product.productImageUrl}
+        onVote={handleProductUpVote}
+        stars={product.stars}
+      />
+    </Link>
   ));
   return <div className="ui unstackable items">{productComponents}</div>;
 }
