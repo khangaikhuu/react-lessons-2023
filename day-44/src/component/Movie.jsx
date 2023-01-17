@@ -9,7 +9,7 @@ export default function Movie() {
   return (
     <div>
       <h1>Movie Detail page {id}</h1>
-      {movie &&
+      {
         movie.map((m, idx) => {
           return (
             <div key={idx}>

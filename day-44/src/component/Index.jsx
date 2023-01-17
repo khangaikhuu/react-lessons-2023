@@ -22,6 +22,7 @@ export default function Index() {
         <Link to={"/home"} state={homePageData} >Home Page</Link>
         <Link to={"/accordion"}>Accordion Page</Link>
         <Link to={"/movies"}>Movies Page</Link>
+        <Link to={"/gallery"}>Image Gallery Page</Link>
       </nav>
     </div>
   );
