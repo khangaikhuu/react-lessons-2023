@@ -10,7 +10,6 @@ function App() {
 
   /// 1. create react state called "productList" variable in App component
   /// 2. create also changing function for productList variable in App component
-
   /// 3. initialize productList state variable with products seed in App component
   /// 4. change product components products into productList variable in App component
 
