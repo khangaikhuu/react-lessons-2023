@@ -9,7 +9,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <div>
       <Input
         label="First input"
         value={text}
@@ -20,7 +20,7 @@ export default function App() {
         value={text}
         onChange={handleChange}
       />
-    </>
+    </div>
   );
 }
 
