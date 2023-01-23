@@ -1,28 +1,13 @@
-import {useState} from 'react'
 import './style.css'
-import Counter from "./components/Counter.jsx";
+import Timer from "./components/Timer";
 
 function App() {
-    const [isFancy, setIsFancy] = useState(false);
-    return (
+    return(
         <div>
-            {isFancy ? (
-                <Counter isFancy={true}/>
-            ) : (
-                <Counter isFancy={false}/>
-            )}
-            <label>
-                <input
-                    type="checkbox"
-                    checked={isFancy}
-                    onChange={e => {
-                        setIsFancy(e.target.checked)
-                    }}
-                />
-                Use fancy styling
-            </label>
+            <Timer project={'project'} title={'Project title'} />
         </div>
-    );
+    )
+
 }
 
 export default App
