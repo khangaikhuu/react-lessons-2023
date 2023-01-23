@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import Anime from './components/Anime';
+import Button from './components/Button';
 import Input from './components/Input';
+import TopAnime from './components/TopAnime';
 
 export default function App() {
   const [text, setText] = useState('');
@@ -20,6 +23,9 @@ export default function App() {
         value={text}
         onChange={handleChange}
       />
+      <Anime />
+      <Button />
+      <TopAnime />
     </div>
   );
 }
