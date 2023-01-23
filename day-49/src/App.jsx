@@ -1,10 +1,10 @@
 import './style.css'
-import Timer from "./components/Timer";
+import TimersDashboard from "./components/TimersDashboard";
 
 function App() {
     return(
         <div>
-            <Timer project={'project'} title={'Project title'} />
+           <TimersDashboard />
         </div>
     )
 
