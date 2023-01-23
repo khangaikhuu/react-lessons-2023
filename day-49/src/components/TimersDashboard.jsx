@@ -3,10 +3,8 @@ import projects from "../data/data.js";
 import Timer from "./Timer.jsx";
 
 export default function TimersDashboard() {
-
     const [timers, setTimers] = useState([])
-    console.log(timers)
-    let times = []
+
     useEffect(() => {
         setTimers(projects)
     }, [timers])
