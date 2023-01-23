@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import Anime from './components/Anime';
 import Button from './components/Button';
+import FindEvenOdd from './components/Ex-Find-Even-Odd';
+import Exercises from './components/Exercises';
 import Input from './components/Input';
+import Pascal from './components/Pascal';
+import PascalTriangle from './components/ChatGPTPascal';
 import TopAnime from './components/TopAnime';
 
 export default function App() {
@@ -13,7 +17,13 @@ export default function App() {
 
   return (
     <div>
-      <Input
+      <PascalTriangle />
+      {/* <Exercises />
+      <FindEvenOdd />
+      <PascalTriangle /> */}
+
+
+      {/* <Input
         label="First input"
         value={text}
         onChange={handleChange}
@@ -22,10 +32,11 @@ export default function App() {
         label="Second input"
         value={text}
         onChange={handleChange}
-      />
-      <Anime />
+      /> */}
+      {/* <Anime />
       <Button />
-      <TopAnime />
+      <TopAnime /> */}
+
     </div>
   );
 }
