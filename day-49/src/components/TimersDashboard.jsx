@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import projects from "../data/data.js";
-import Timer from "./Timer.jsx";
 import {newTimer} from "../timercomponent/Helpers";
+import EditableTimerList from "./EditableTimerList";
+import ToggleableTimerForm from "./ToggleableTimerForm.jsx";
 
 export default function TimersDashboard() {
     const [timers, setTimers] = useState({timers: []})
@@ -16,6 +17,14 @@ export default function TimersDashboard() {
 
     function handleTrashClick(timerId) {
         deleteTimer(timerId)
+    }
+
+    function handleStartClick(timerId) {
+        startTimer(timerId)
+    }
+
+    function handleStopClick(timerId) {
+        stopTimer(timerId)
     }
 
     function createTimer(timer) {
@@ -79,10 +88,12 @@ export default function TimersDashboard() {
 
     return (<div>
         <h1>Timers</h1>
-        {timers.timers && timers.timers.map(t => {
-            return <Timer project={t.project} title={t.title} id={t.id} elapsed={t.elapsed}
-                          runningSince={t.runningSince} onStartClick={startTimer} onStopClick={stopTimer}
-                          onEditClick={handleEditFormSubmit} onTrashClick={handleTrashClick}/>
-        })}
+        {timers.timers &&
+
+            <div>
+                <EditableTimerList timers={timers.timers} onFormSubmit={handleEditFormSubmit}
+                                   onTrashClick={handleTrashClick} onStartClick={handleStartClick}
+                                   onStopClick={handleStopClick}/>
+                <ToggleableTimerForm/></div>}
     </div>)
 }

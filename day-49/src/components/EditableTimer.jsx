@@ -49,6 +49,6 @@ export default function EditableTimer({
                                                                             onTrashClick={onTrashClick}
                                                                             onStartClick={onStartClick}
                                                                             onEditClick={handleEditClick}
-                                                                            onStopClick={onStartClick}/>}
+                                                                            onStopClick={onStopClick}/>}
     </div>)
 }

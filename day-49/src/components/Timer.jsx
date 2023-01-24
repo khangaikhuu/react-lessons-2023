@@ -31,6 +31,7 @@ export default function Timer({
     }
 
     function handleStopClick() {
+        console.log('handling stop click')
         onStopClick(id)
     }
 
