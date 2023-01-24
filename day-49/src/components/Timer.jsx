@@ -3,16 +3,11 @@ import {Box, Card, CardContent, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import TimerActionButton from "./TimerActionButton";
-import TimerForm from "./TimerForm";
 import {renderElapsedString} from "./Helpers.js";
 
 export default function Timer({title, project, onStartClick, onTrashClick, onStopClick, id, elapsed, runningSince}) {
-    console.log(title)
-    console.log(project)
-    const elapsedString = renderElapsedString(
-        elapsed, runningSince
-    );
-    console.log(elapsedString)
+    console.log(id)
+    const elapsedString = renderElapsedString(elapsed, runningSince);
 
     function handleDelete(e) {
         console.log(e)
@@ -23,7 +18,11 @@ export default function Timer({title, project, onStartClick, onTrashClick, onSto
     }
 
     function handleStartClick() {
+        onStartClick(id)
+    }
 
+    function handleStopClick() {
+        onStopClick(id)
     }
 
     return (<Container maxWidth='sm'>
@@ -44,8 +43,10 @@ export default function Timer({title, project, onStartClick, onTrashClick, onSto
                     <DeleteIcon onClick={handleDelete}/>
                     <ModeEditIcon onClick={handleEdit}/>
                 </Box>
-                <TimerActionButton timerIsRunning={false} onStartClick={() => console.log('on start click')}
-                                   onStopClick={() => console.log('on stop click')}/>
+                <TimerActionButton
+                    timerIsRunning={runningSince}
+                    onStartClick={handleStartClick}
+                    onStopClick={handleStopClick}/>
             </CardContent>
         </Card>
     </Container>)
