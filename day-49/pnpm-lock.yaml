@@ -10,6 +10,7 @@ specifiers:
   '@vitejs/plugin-react': ^3.0.0
   react: ^18.2.0
   react-dom: ^18.2.0
+  uuid: ^9.0.0
   vite: ^4.0.0
 
 dependencies:
@@ -19,6 +20,7 @@ dependencies:
   '@mui/material': 5.11.5_rqh7qj4464ntrqrt6banhaqg4q
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  uuid: 9.0.0
 
 devDependencies:
   '@types/react': 18.0.27
@@ -1285,6 +1287,11 @@ packages:
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /vite/4.0.4:
     resolution: {integrity: sha512-xevPU7M8FU0i/80DMR+YhgrzR5KS2ORy1B4xcX/cXLsvnUWvfHuqMmVU6N0YiJ4JWGRJJsLCgjEzKjG9/GKoSw==}

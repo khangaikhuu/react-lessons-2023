@@ -2,6 +2,7 @@ import {Button, Card, CardContent, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 
 export default function TimerForm({title, project, id, onFormClose, onFormSubmit}) {
+    console.log(id)
     const [timer, setTimer] = useState({
         title: title || '', project: project || '',
     })
@@ -9,16 +10,21 @@ export default function TimerForm({title, project, id, onFormClose, onFormSubmit
     const submitText = id ? 'Update' : 'Create'
 
     function handleTitleChange(e) {
-        setTimer({title: e.target.value})
+        setTimer({
+            ...timer, title: e.target.value
+        });
     }
 
     function handleProjectChange(e) {
-        setTimer({project: e.target.value})
+        setTimer({
+            ...timer, project: e.target.value
+        });
     }
+
 
     function handleSubmit() {
         onFormSubmit({
-            id: id, title: title, project: project
+            id: id, title: timer.title, project: timer.project
         })
     }
 
@@ -31,7 +37,8 @@ export default function TimerForm({title, project, id, onFormClose, onFormSubmit
                             <TextField
                                 type="text"
                                 placeholder={timer.title}
-                                label={timer.title}
+                                label={'Title'}
+                                value={timer.title}
                                 variant="outlined"
                                 fullWidth
                                 required
@@ -42,7 +49,8 @@ export default function TimerForm({title, project, id, onFormClose, onFormSubmit
                             <TextField
                                 type="text"
                                 placeholder={timer.project}
-                                label={timer.project}
+                                label={'Project'}
+                                value={timer.project}
                                 variant="outlined"
                                 fullWidth
                                 required

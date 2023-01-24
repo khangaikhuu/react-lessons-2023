@@ -8,6 +8,7 @@ export default function TimersDashboard() {
     const [timers, setTimers] = useState({timers: []})
 
     function handleCreateFormSubmit(timer) {
+        console.log(timer)
         createTimer(timer)
     }
 
@@ -29,9 +30,9 @@ export default function TimersDashboard() {
 
     function createTimer(timer) {
         const t = newTimer(timer)
-        setTimers({
-            timers: timers.timers.concat(t)
-        })
+        console.log(timers)
+        setTimers({timers: timers.timers.concat(t)})
+        console.log(timers)
     }
 
     function startTimer(timerId) {
@@ -88,12 +89,10 @@ export default function TimersDashboard() {
 
     return (<div>
         <h1>Timers</h1>
-        {timers.timers &&
-
-            <div>
-                <EditableTimerList timers={timers.timers} onFormSubmit={handleEditFormSubmit}
-                                   onTrashClick={handleTrashClick} onStartClick={handleStartClick}
-                                   onStopClick={handleStopClick}/>
-                <ToggleableTimerForm/></div>}
+        {timers.timers && <div>
+            <EditableTimerList timers={timers.timers} onFormSubmit={handleEditFormSubmit}
+                               onTrashClick={handleTrashClick} onStartClick={handleStartClick}
+                               onStopClick={handleStopClick}/>
+            <ToggleableTimerForm onFormSubmit={handleCreateFormSubmit}/></div>}
     </div>)
 }

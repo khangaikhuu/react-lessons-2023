@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 function renderElapsedString(elapsed, runningSince) {
     let totalElapsed = elapsed;
     if (runningSince) {
@@ -26,10 +28,11 @@ function pad(numberString, size) {
 }
 
 function newTimer(attrs = {}) {
+    console.log(attrs)
     return {
         title: attrs.title || 'Timer',
         project: attrs.project || 'Project',
-        id: uuid.v4(), // eslint-disable-line no-undef
+        id: uuidv4(), // eslint-disable-line no-undef
         elapsed: 0,
     };
 }
