@@ -5,16 +5,25 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import TimerActionButton from "./TimerActionButton";
 import {renderElapsedString} from "./Helpers.js";
 
-export default function Timer({title, project, onStartClick, onTrashClick, onStopClick, id, elapsed, runningSince}) {
-    console.log(id)
+export default function Timer({
+                                  title,
+                                  project,
+                                  onStartClick,
+                                  onTrashClick,
+                                  onEditClick,
+                                  onStopClick,
+                                  id,
+                                  elapsed,
+                                  runningSince
+                              }) {
     const elapsedString = renderElapsedString(elapsed, runningSince);
 
-    function handleDelete(e) {
-        console.log(e)
+    function handleDelete() {
+        onTrashClick(id)
     }
 
-    function handleEdit(e) {
-        console.log(e)
+    function handleEdit() {
+        onEditClick(id)
     }
 
     function handleStartClick() {

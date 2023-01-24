@@ -1,27 +1,24 @@
 import {Button, Card, CardContent, Grid, TextField} from "@mui/material";
 import {useState} from "react";
 
-export default function TimerForm({titleName, projectName, id,  onFormClose, onFormSubmit}) {
-    const [title, setTitle] = useState(titleName)
-    const [project, setProject] = useState(projectName)
+export default function TimerForm({title, project, id, onFormClose, onFormSubmit}) {
+    const [timer, setTimer] = useState({
+        title: title || '', project: project || '',
+    })
 
-    const submitText = id ? 'Update': 'Create'
+    const submitText = id ? 'Update' : 'Create'
 
     function handleTitleChange(e) {
-        setTitle(e.target.value)
-        console.log(title)
+        setTimer({title: e.target.value})
     }
 
-    function handleProjectChange(e){
-        setProject(e.target.value)
-        console.log(project)
+    function handleProjectChange(e) {
+        setTimer({project: e.target.value})
     }
 
-    function handleSubmit(){
+    function handleSubmit() {
         onFormSubmit({
-            id: id,
-            title: title,
-            project: project
+            id: id, title: title, project: project
         })
     }
 
@@ -33,8 +30,8 @@ export default function TimerForm({titleName, projectName, id,  onFormClose, onF
                         <Grid item xs={12}>
                             <TextField
                                 type="text"
-                                placeholder={title}
-                                label={title}
+                                placeholder={timer.title}
+                                label={timer.title}
                                 variant="outlined"
                                 fullWidth
                                 required
@@ -44,8 +41,8 @@ export default function TimerForm({titleName, projectName, id,  onFormClose, onF
                         <Grid item xs={12}>
                             <TextField
                                 type="text"
-                                placeholder={project}
-                                label={project}
+                                placeholder={timer.project}
+                                label={timer.project}
                                 variant="outlined"
                                 fullWidth
                                 required
@@ -53,7 +50,8 @@ export default function TimerForm({titleName, projectName, id,  onFormClose, onF
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button color={"success"} variant={"outlined"} onClick={handleSubmit}> {submitText} </Button>
+                            <Button color={"success"} variant={"outlined"}
+                                    onClick={handleSubmit}> {submitText} </Button>
                             <Button color={"error"} variant={"outlined"} onClick={onFormClose}>Cancel </Button>
                         </Grid>
                     </Grid>
