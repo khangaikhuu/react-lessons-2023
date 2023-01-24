@@ -1,13 +1,13 @@
-import './style.css'
-import TimersDashboard from "./components/TimersDashboard";
+import "./style.css";
+import TimerDashboard from "./timercomponent/TimerDashboard";
 
 function App() {
-    return(
-        <div>
-           <TimersDashboard />
-        </div>
-    )
-
+  return (
+    <div>
+      <h1>Timer App</h1>
+      <TimerDashboard />
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,4 +1,4 @@
-const projects = [{
+const timerData = [{
     "title": "Mow the lawn",
     "project": "House Chores",
     "elapsed": 5459795,
@@ -17,4 +17,4 @@ const projects = [{
     "runningSince": null
 }]
 
-export default projects
+export default timerData
