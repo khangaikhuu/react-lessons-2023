@@ -14,7 +14,6 @@ function millisecondsToHuman(ms) {
     const minutes = Math.floor((ms / 1000 / 60) % 60);
     const hours = Math.floor(ms / 1000 / 60 / 60)
 
-    console.log(seconds, minutes, hours)
     return [pad(hours.toString(), 2), pad(minutes.toString(), 2), pad(seconds.toString(), 2)].join(":")
 
 }
