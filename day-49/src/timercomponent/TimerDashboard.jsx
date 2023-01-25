@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import timerData from "../data/data";
 import EditableTimerList from "./EditableTimerList";
 import ToggleableTimerForm from "./ToggleableTimerForm";
+import { newTimer } from "./Helpers";
 export default function TimerDashboard() {
   const [timers, setTimers] = useState({ timers: [] });
 
   useEffect(() => {
-    setInterval(() => setTimers({ timers: timerData }), 1000);
+    setInterval(() => setTimers({ timers: timerData }), 10000);
   }, []);
 
   function handleCreateFormSubmit(timer) {
