@@ -4,6 +4,7 @@ export default function EditableTimerList({
   timers,
   onTrashClick,
   onStartClick,
+  onStopClick,
 }) {
   const timerList = timers.map((timer, index) => (
     <EditableTimer
@@ -15,6 +16,7 @@ export default function EditableTimerList({
       runningSince={timer.runningSince}
       onTrashClick={onTrashClick}
       onStartClick={onStartClick}
+      onStopClick={onStopClick}
     />
   ));
 

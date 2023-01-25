@@ -14,8 +14,13 @@ export default function Timer({
   runningSince,
   onTrashClick,
   onStartClick,
+  onStopClick,
 }) {
   const timer = renderElapsedString(elapsed, runningSince);
+
+  function handleStopClick() {
+    onStopClick(id);
+  }
 
   function handleStartClick() {
     onStartClick(id);
@@ -68,9 +73,7 @@ export default function Timer({
         <TimerActionButton
           isTimerRunning={runningSince}
           onStartClick={handleStartClick}
-          onStopClick={() => {
-            console.log("stop");
-          }}
+          onStopClick={handleStopClick}
         />
       </Card>
     </Container>
