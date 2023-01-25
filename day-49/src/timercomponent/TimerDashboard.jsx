@@ -4,10 +4,10 @@ import EditableTimerList from "./EditableTimerList";
 import ToggleableTimerForm from "./ToggleableTimerForm";
 import { newTimer } from "./Helpers";
 export default function TimerDashboard() {
-  const [timers, setTimers] = useState({ timers: [] });
+  const [timers, setTimers] = useState({ data: [] });
 
   useEffect(() => {
-    setInterval(() => setTimers({ timers: timerData }), 10000);
+    setInterval(() => setTimers({ data: timerData }), 10000);
   }, []);
 
   function handleCreateFormSubmit(timer) {
@@ -17,7 +17,7 @@ export default function TimerDashboard() {
   function createTimer(timer) {
     const t = newTimer(timer);
     setTimers({
-      timers: timers.timers.concat(t),
+      timers: timers.data.concat(t),
     });
   }
 
@@ -27,7 +27,7 @@ export default function TimerDashboard() {
 
   function updateTimer(attributes) {
     setTimers({
-      timers: timers.timers.map((timer) => {
+      data: timers.data.map((timer) => {
         if (timer.id === attributes.id) {
           timer.title = attributes.title;
           timer.project = attributes.project;
@@ -63,7 +63,7 @@ export default function TimerDashboard() {
     const now = Date.now();
 
     setTimers({
-      timers: timers.timers.map((timer) => {
+      timers: timers.data.map((timer) => {
         if (timer.id === timerId) {
           timer.runningSince = now;
           return timer;
@@ -80,7 +80,7 @@ export default function TimerDashboard() {
 
   function deleteTimer(timerId) {
     setTimers({
-      timers: timers.timers.filter((t) => t.id !== timerId),
+      timers: timers.data.filter((t) => t.id !== timerId),
     });
   }
 
@@ -88,10 +88,10 @@ export default function TimerDashboard() {
     <div>
       <h1>Timers</h1>
 
-      {timers.timers && (
+      {timers.data && (
         <div>
           <EditableTimerList
-            timers={timers.timers}
+            timers={timers.data}
             onTrashClick={handleTrashClick}
             onStartClick={handleStartClick}
             onStopClick={handleStopClick}
