@@ -1,7 +1,7 @@
 const express = require('express')
-const PORT = 8080
+var bodyParser = require('body-parser')
 
-const timerData = {
+let timerData = {
     data: [{
         "title": "Mow the lawn",
         "project": "House Chores",
@@ -22,14 +22,21 @@ const timerData = {
     }]
 }
 
-
+const PORT = 8080
 const app = express()
-
+app.use(bodyParser.json())
 app.get("/", (request, response) => {
     response.send('Hello Express Server')
 })
 
 app.get("/data", (request, response) => {
+    response.json(timerData)
+})
+
+app.post("/data", (request, response) => {
+    console.log(request.body)
+    timerData.data.push(request.body)
+
     response.json(timerData)
 })
 
