@@ -7,6 +7,50 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.delete("/user", (request, response) => {
+  const body = request.body;
+  fs.readFile("./data/user.json", "utf-8", (readError, data) => {
+    let savedData = JSON.parse(data);
+    if (readError) {
+      response.json({
+        status: "read file error",
+      });
+    }
+    const deletedData = savedData.filter((d) => d.id !== body.userId);
+    fs.writeFile(
+      "./data/user.json",
+      JSON.stringify(deletedData),
+      (writeError) => {
+        if (writeError) {
+          response.json({
+            status: "error",
+          });
+        }
+
+        response.json({
+          status: "success",
+          data: deletedData,
+        });
+      }
+    );
+  });
+});
+
+app.get("/user", (request, response) => {
+  fs.readFile("./data/user.json", "utf-8", (readError, data) => {
+    let savedData = JSON.parse(data);
+    if (readError) {
+      response.json({
+        status: "read file error",
+      });
+    }
+    response.json({
+      status: "success",
+      data: savedData,
+    });
+  });
+});
+
 app.post("/user", (request, response) => {
   const body = request.body;
   fs.readFile("./data/user.json", "utf-8", (readError, data) => {
@@ -23,7 +67,7 @@ app.post("/user", (request, response) => {
       age: body.age,
     };
 
-    savedData.data.push(newUser);
+    savedData.push(newUser);
 
     fs.writeFile(
       "./data/user.json",
@@ -37,6 +81,42 @@ app.post("/user", (request, response) => {
           response.json({
             status: "success",
             data: savedData,
+          });
+        }
+      }
+    );
+  });
+});
+
+app.put("/user", (request, response) => {
+  const body = request.body;
+  fs.readFile("./data/user.json", "utf-8", (readError, data) => {
+    let savedData = JSON.parse(data);
+    if (readError) {
+      response.json({
+        status: "read file error",
+      });
+    }
+
+    const updatedData = savedData.map((d) => {
+      if (d.id === body.id) {
+        (d.username = body.username), (d.age = body.age);
+      }
+      return d;
+    });
+
+    fs.writeFile(
+      "./data/user.json",
+      JSON.stringify(updatedData),
+      (writeError) => {
+        if (writeError) {
+          response.json({
+            status: "error",
+          });
+        } else {
+          response.json({
+            status: "success",
+            data: updatedData,
           });
         }
       }
