@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 function App() {
   const BE_URL = "http://localhost:8080/user";
   const [users, setUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState({
+  const newUser = {
     id: "",
     username: "",
     age: "",
-  });
+  }
+  const [currentUser, setCurrentUser] = useState(newUser);
   const [isUpdate, setIsUpdate] = useState(false);
 
   useEffect(() => {
@@ -51,6 +52,8 @@ function App() {
     const FETCHED_DATA = await fetch(BE_URL, options);
     const FETCHED_JSON = await FETCHED_DATA.json();
     setUsers(FETCHED_JSON.data);
+    setIsUpdate(false)
+    setCurrentUser(newUser)
   }
 
   async function handleDelete(userId) {
