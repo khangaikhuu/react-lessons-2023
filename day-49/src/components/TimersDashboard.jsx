@@ -1,14 +1,13 @@
 import {useEffect, useState} from "react";
-import projects from "../data/data.js";
 import {newTimer} from "../timercomponent/Helpers";
 import EditableTimerList from "./EditableTimerList";
 import ToggleableTimerForm from "./ToggleableTimerForm.jsx";
+import projects from '../data/data.js'
 
 export default function TimersDashboard() {
     const [timers, setTimers] = useState({timers: []})
 
     function handleCreateFormSubmit(timer) {
-        console.log(timer)
         createTimer(timer)
     }
 
@@ -30,9 +29,7 @@ export default function TimersDashboard() {
 
     function createTimer(timer) {
         const t = newTimer(timer)
-        console.log(timers)
         setTimers({timers: timers.timers.concat(t)})
-        console.log(timers)
     }
 
     function startTimer(timerId) {
@@ -84,7 +81,7 @@ export default function TimersDashboard() {
     }
 
     useEffect(() => {
-        setInterval(() => setTimers({timers: projects}), 1000)
+        setInterval(() => setTimers({timers: projects}), 10000)
     }, [])
 
     return (<div>
