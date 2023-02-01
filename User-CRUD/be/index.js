@@ -5,7 +5,13 @@ const PORT = 8080;
 
 const app = express();
 app.use(cors());
+app.use(express.static('public'))
 app.use(express.json());
+
+app.use(function(req, res) {
+  res.status(400)
+  res.send('file not found')
+})
 
 app.delete("/user", (request, response) => {
   const body = request.body;
