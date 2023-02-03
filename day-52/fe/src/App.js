@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react'
-import { fetchAllData, deleteUser, updateUser, createUser } from './services/usersServices';
+import { updateUser, createUser } from './services/usersServices';
+import { fetchAllData, deleteUser } from './services/axiosUsersServices';
 
 function App() {
 
@@ -28,9 +29,9 @@ function App() {
     e.preventDefault();
 
     if (!isUpdate) {
-      updateUser(e, URL, setUsers)
-    } else {
       createUser(currentUser, URL, setUsers, setIsUpdate, setCurrentUser, newUser)
+    } else {
+      updateUser(e, URL, setUsers)
     }
   }
 

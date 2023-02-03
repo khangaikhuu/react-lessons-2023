@@ -7,6 +7,9 @@ const PORT = 8080
 app.use(cors())
 app.use(express.json())
 
+['a', 'b', 'c'
+].join(':') // a:b:c
+
 app.delete('/users', (request, response) => {
     const body = request.body
     fs.readFile('./data/users.json', 'utf-8', (readError, readData) => {
