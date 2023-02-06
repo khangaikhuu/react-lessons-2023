@@ -1,11 +1,28 @@
 import { useEffect, useState } from "react";
-import { newTimer } from "../components/Helpers";
+import { newTimer } from "./Helpers";
 import EditableTimerList from "./EditableTimerList";
 import ToggleableTimerForm from "./ToggleableTimerForm.jsx";
 import projects from "../data/data.js";
 
 export default function TimersDashboard() {
   const [timers, setTimers] = useState({ timers: [] });
+
+  const URL = "http://localhost:8080/timers";
+
+  useEffect(() => {
+    fetchTimersData();
+  }, []);
+
+  // useEffect(() => {
+  //   setInterval(() => setTimers({ timers: projects }), 1000);
+  // }, []);
+
+  async function fetchTimersData() {
+    const FETCHED_DATA = await fetch(URL);
+    const FETCHED_JSON = await FETCHED_DATA.json();
+    console.log(FETCHED_JSON);
+    setTimers({ timers: FETCHED_JSON.data });
+  }
 
   function handleCreateFormSubmit(timer) {
     createTimer(timer);
@@ -79,10 +96,6 @@ export default function TimersDashboard() {
       timers: timers.timers.filter((t) => t.id !== timerId),
     });
   }
-
-  useEffect(() => {
-    setInterval(() => setTimers({ timers: projects }), 1000);
-  }, []);
 
   return (
     <div>
