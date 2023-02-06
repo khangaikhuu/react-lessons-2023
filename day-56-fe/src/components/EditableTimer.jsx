@@ -2,7 +2,6 @@ import { useState } from "react";
 import React from "react";
 import TimerForm from "./TimerForm.jsx";
 import Timer from "./Timer.jsx";
-import { TimerContext } from "../contexts/TimerContext.js";
 
 export default function EditableTimer({
   onFormSubmit,
