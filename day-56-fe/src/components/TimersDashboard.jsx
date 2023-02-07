@@ -9,13 +9,13 @@ export default function TimersDashboard() {
 
   const URL = "http://localhost:8080/timers";
 
-  useEffect(() => {
-    fetchTimersData();
-  }, []);
-
   // useEffect(() => {
-  //   setInterval(() => setTimers({ timers: projects }), 1000);
+  //   fetchTimersData();
   // }, []);
+
+  useEffect(() => {
+    setInterval(() => setTimers({ timers: projects }), 1000);
+  }, []);
 
   async function fetchTimersData() {
     const FETCHED_DATA = await fetch(URL);
