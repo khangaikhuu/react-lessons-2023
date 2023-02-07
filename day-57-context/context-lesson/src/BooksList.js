@@ -1,10 +1,12 @@
 import Books from "./components/Books";
-import { DATA } from "./data/data";
+import { BooksContextProvider } from "./contexts/BookContext";
 
 export default function BooksList() {
     return (
         <div>
-            <Books list={DATA} />
+            <BooksContextProvider>
+                <Books />
+            </BooksContextProvider>
         </div>
     )
 }
