@@ -4,8 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import TimerActionButton from "./TimerActionButton";
 import { renderElapsedString } from "./Helpers.js";
-import { useContext } from "react";
-import { TimerContext } from "../context/TimerContext";
 
 export default function Timer({
   title,
