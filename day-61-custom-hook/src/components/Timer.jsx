@@ -10,31 +10,30 @@ import { TimerContext } from "../context/TimerContext";
 export default function Timer({
   title,
   project,
-  onStartClick,
-  onTrashClick,
-  onEditClick,
-  onStopClick,
   id,
   elapsed,
   runningSince,
+  onEditClick
 }) {
   const elapsedString = renderElapsedString(elapsed, runningSince);
+  const {handleStartClick, handleStopClick, handleTrashClick} = useContext(TimerContext)
 
   function handleDelete() {
-    onTrashClick(id);
+    handleTrashClick(id);
   }
 
   function handleEdit() {
+    console.log('handle edit clicked')
     onEditClick(id);
   }
 
-  function handleStartClick() {
-    onStartClick(id);
+  function handleStartButtonClick() {
+    handleStartClick(id);
   }
 
-  function handleStopClick() {
+  function handleStopButtonClick() {
     console.log("handling stop click");
-    onStopClick(id);
+    handleStopClick(id);
   }
 
   return (
@@ -69,8 +68,8 @@ export default function Timer({
           </Box>
           <TimerActionButton
             timerIsRunning={runningSince}
-            onStartClick={handleStartClick}
-            onStopClick={handleStopClick}
+            onStartClick={handleStartButtonClick}
+            onStopClick={handleStopButtonClick}
           />
         </CardContent>
       </Card>

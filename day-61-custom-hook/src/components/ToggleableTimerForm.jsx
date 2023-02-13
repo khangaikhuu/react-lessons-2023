@@ -1,11 +1,13 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
+import { TimerContext } from "../context/TimerContext.js";
 import TimerForm from "./TimerForm.jsx";
 
-export default function ToggleableTimerForm({onFormSubmit}) {
+export default function ToggleableTimerForm() {
     const [isOpen, setIsOpen] = useState(false)
+    const {handleCreateFormSubmit} = useContext(TimerContext)
 
     function handleFormSubmit(timer) {
-        onFormSubmit(timer)
+        handleCreateFormSubmit(timer)
         setIsOpen(false)
     }
 

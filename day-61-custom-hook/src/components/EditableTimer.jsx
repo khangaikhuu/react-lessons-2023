@@ -1,35 +1,35 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import TimerForm from "./TimerForm.jsx";
 import Timer from "./Timer.jsx";
+import { TimerContext } from "../context/TimerContext.js";
 
 export default function EditableTimer({
-                                          onFormSubmit,
                                           id,
                                           title,
                                           project,
                                           elapsed,
                                           runningSince,
-                                          onTrashClick,
-                                          onStartClick,
-                                          onStopClick
+                                        
                                       }) {
     const [editFormOpen, setEditFormOpen] = useState(false)
+
+    const {handleEditFormSubmit } = useContext(TimerContext)
 
     function handleFormClose() {
         closeForm()
     }
 
-    function handleEditClick() {
-        openForm()
-    }
-
     function handleSubmit(timer) {
-        onFormSubmit(timer)
+        handleEditFormSubmit(timer)
         closeForm()
     }
 
+
     function closeForm() {
         setEditFormOpen(false)
+    }
+    function handleEditClick() {
+        openForm()
     }
 
     function openForm() {
@@ -46,9 +46,7 @@ export default function EditableTimer({
                                                                             project={project}
                                                                             elapsed={elapsed}
                                                                             runningSince={runningSince}
-                                                                            onTrashClick={onTrashClick}
-                                                                            onStartClick={onStartClick}
                                                                             onEditClick={handleEditClick}
-                                                                            onStopClick={onStopClick}/>}
+                                                                            />}
     </div>)
 }
