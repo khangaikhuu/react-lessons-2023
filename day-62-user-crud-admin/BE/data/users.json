@@ -1,16 +1,13 @@
 [
     {
-        "firstname": "dfd",
-        "lastname": "dfd",
-        "email": "dfd",
-        "password": "dfd",
-        "address": "dfdf"
-    },
-    {
-        "firstname": "dfd",
-        "lastname": "dfd",
-        "email": "dfd",
-        "password": "dfd",
-        "address": "dfdf"
+        "firstname": "adfad",
+        "lastname": "asdfasd",
+        "email": "adfad",
+        "password": "adfasd",
+        "address": "asdfasd",
+        "role": {
+            "id": 2,
+            "name": "User"
+        }
     }
 ]
