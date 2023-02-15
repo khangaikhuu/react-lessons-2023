@@ -1,13 +1,1 @@
-[
-    {
-        "firstname": "adfad",
-        "lastname": "asdfasd",
-        "email": "adfad",
-        "password": "adfasd",
-        "address": "asdfasd",
-        "role": {
-            "id": 2,
-            "name": "User"
-        }
-    }
-]
+[{"firstname":"adfad","lastname":"asdfasd","email":"khangaikhuu@gmail.com","password":"adfasd","address":"asdfasd","role":{"id":2,"name":"User"}},{"firstname":"khangaikhuu","lastname":"uvgunkhuu","email":"khangaikhuu@gmail.com","password":"12345678","address":"bayangol duureg 1st khoroo 2nd khoroolol 014-1-6 toot","role":{"id":1,"name":"Admin"}}]
