@@ -8,30 +8,27 @@ export default function CategoryEditForm() {
   const URL = "http://localhost:8080/category";
   console.log(id);
 
-  const [category, setCategory] = useState({
-    name: "Test",
-  });
-
-  async function fetchCategory() {
-    const options = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        categoryId: id,
-      }),
-    };
-    const FETCHED_DATA = await fetch(URL, options);
-    const FETCHED_JSON = await FETCHED_DATA.json();
-    if (FETCHED_JSON.status === "success") {
-      setCategory(FETCHED_JSON.data);
-    }
-  }
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
+    async function fetchCategory() {
+      const options = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          categoryId: id,
+        }),
+      };
+      const FETCHED_DATA = await fetch(URL, options);
+      const FETCHED_JSON = await FETCHED_DATA.json();
+      if (FETCHED_JSON.status === "success") {
+        setCategory(FETCHED_JSON.data);
+      }
+    }
     fetchCategory();
-  }, []);
+  }, [id]);
 
   function handleInputChange(e) {
     setCategory(e.target.value);
@@ -63,8 +60,9 @@ export default function CategoryEditForm() {
       <h1>Category Edit Form</h1>
       <form onSubmit={handleEditSubmit}>
         <input
+          type="text"
           name="categoryName"
-          value={category.name}
+          value={category.toString()}
           onChange={handleInputChange}
         />
         <br />
