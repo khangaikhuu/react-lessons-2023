@@ -36,9 +36,29 @@ export default function Categories() {
     }
   }
 
+  async function handleSearchSubmit(e) {
+    e.preventDefault();
+    const searchInput = e.target.search.value;
+    const SEARCH_URL = `http://localhost:8080/search?value=${searchInput}`;
+    const FETCHED_DATA = await fetch(SEARCH_URL);
+    const FETCHED_JSON = await FETCHED_DATA.json();
+    if (FETCHED_JSON.status === "success") {
+      setCategories(FETCHED_JSON.data);
+    }
+  }
+
   return (
     <div>
       <h1>Category List</h1>
+      <form onSubmit={handleSearchSubmit}>
+        <label>
+          Search
+          <input name="search" />
+          <br />
+          <button type="submit">Search</button>
+        </label>
+      </form>
+
       <table>
         <thead>
           <tr>
