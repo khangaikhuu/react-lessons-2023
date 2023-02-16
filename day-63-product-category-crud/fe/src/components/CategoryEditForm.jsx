@@ -8,7 +8,9 @@ export default function CategoryEditForm() {
   const URL = "http://localhost:8080/category";
   console.log(id);
 
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState({
+    name: "",
+  });
 
   useEffect(() => {
     async function fetchCategory() {
@@ -62,7 +64,7 @@ export default function CategoryEditForm() {
         <input
           type="text"
           name="categoryName"
-          value={category.toString()}
+          value={category.name}
           onChange={handleInputChange}
         />
         <br />
