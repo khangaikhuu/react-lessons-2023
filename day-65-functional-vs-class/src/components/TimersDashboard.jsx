@@ -1,58 +1,66 @@
-import { useEffect, useState } from "react";
 import { newTimer } from "./Helpers";
 import EditableTimerList from "./EditableTimerList";
 import ToggleableTimerForm from "./ToggleableTimerForm.jsx";
 import projects from "../data/data.js";
+import React from "react";
 
-export default function TimersDashboard() {
-  const [timers, setTimers] = useState({ timers: [] });
-
-  const URL = "http://localhost:8080/timers";
+export default class TimersDashboard extends React.Component {
+  constructor() {
+    super();
+    this.state = { timers: [] };
+    const URL = "http://localhost:8080/timers";
+    this.createTimer = this.createTimer.bind(this);
+    this.handleCreateFormSubmit = this.handleCreateFormSubmit.bind(this);
+    this.handleEditFormSubmit = this.handleEditFormSubmit.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleStopClick = this.handleStopClick.bind(this);
+    this.createTimer = this.createTimer.bind(this);
+    this.updateTimer = this.updateTimer.bind(this);
+    this.deleteTimer = this.deleteTimer.bind(this);
+  }
 
   // useEffect(() => {
   //   fetchTimersData();
   // }, []);
+  componentDidMount() {
+    setInterval(() => this.setState({ timers: projects }), 1000);
+  }
+  // async function fetchTimersData() {
+  //   const FETCHED_DATA = await fetch(URL);
+  //   const FETCHED_JSON = await FETCHED_DATA.json();
+  //   console.log(FETCHED_JSON);
+  //   setTimers({ timers: FETCHED_JSON.data });
+  // }
 
-  useEffect(() => {
-    setInterval(() => setTimers({ timers: projects }), 1000);
-  }, []);
-
-  async function fetchTimersData() {
-    const FETCHED_DATA = await fetch(URL);
-    const FETCHED_JSON = await FETCHED_DATA.json();
-    console.log(FETCHED_JSON);
-    setTimers({ timers: FETCHED_JSON.data });
+  handleCreateFormSubmit(timer) {
+    this.createTimer(timer);
   }
 
-  function handleCreateFormSubmit(timer) {
-    createTimer(timer);
+  handleEditFormSubmit(attrs) {
+    this.updateTimer(attrs);
   }
 
-  function handleEditFormSubmit(attrs) {
-    updateTimer(attrs);
+  handleTrashClick(timerId) {
+    this.deleteTimer(timerId);
   }
 
-  function handleTrashClick(timerId) {
-    deleteTimer(timerId);
+  handleStartClick(timerId) {
+    this.startTimer(timerId);
   }
 
-  function handleStartClick(timerId) {
-    startTimer(timerId);
+  handleStopClick(timerId) {
+    this.stopTimer(timerId);
   }
 
-  function handleStopClick(timerId) {
-    stopTimer(timerId);
-  }
-
-  function createTimer(timer) {
+  createTimer(timer) {
     const t = newTimer(timer);
-    setTimers({ timers: timers.timers.concat(t) });
+    this.setState({ timers: this.state.timers.concat(t) });
   }
 
-  function startTimer(timerId) {
+  startTimer(timerId) {
     const now = Date.now();
-    setTimers({
-      timers: timers.timers.map((timer) => {
+    this.setState({
+      timers: this.state.timers.map((timer) => {
         if (timer.id === timerId) {
           console.log(timer);
           timer.runningSince = now;
@@ -64,11 +72,11 @@ export default function TimersDashboard() {
     });
   }
 
-  function stopTimer(timerId) {
+  stopTimer(timerId) {
     const now = Date.now();
 
-    setTimers({
-      timers: timers.timers.map((timer) => {
+    this.setState({
+      timers: this.state.timers.map((timer) => {
         if (timer.id === timerId) {
           const lastElapsed = now - timer.runningSince;
           timer.elapsed = timer.elapsed + lastElapsed;
@@ -79,9 +87,9 @@ export default function TimersDashboard() {
     });
   }
 
-  function updateTimer(attrs) {
-    setTimers({
-      timers: timers.timers.map((timer) => {
+  updateTimer(attrs) {
+    this.setState({
+      timers: this.state.timers.map((timer) => {
         if (timer.id === attrs.id) {
           timer.title = attrs.title;
           timer.project = attrs.project;
@@ -91,27 +99,29 @@ export default function TimersDashboard() {
     });
   }
 
-  function deleteTimer(timerId) {
-    setTimers({
-      timers: timers.timers.filter((t) => t.id !== timerId),
+  deleteTimer(timerId) {
+    this.setState({
+      timers: this.state.timers.filter((t) => t.id !== timerId),
     });
   }
 
-  return (
-    <div>
-      <h1>Timers</h1>
-      {timers.timers && (
-        <div>
-          <EditableTimerList
-            timers={timers.timers}
-            onFormSubmit={handleEditFormSubmit}
-            onTrashClick={handleTrashClick}
-            onStartClick={handleStartClick}
-            onStopClick={handleStopClick}
-          />
-          <ToggleableTimerForm onFormSubmit={handleCreateFormSubmit} />
-        </div>
-      )}
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <h1>Timers</h1>
+        {this.state.timers && (
+          <div>
+            <EditableTimerList
+              timers={this.state.timers}
+              onFormSubmit={this.handleEditFormSubmit}
+              onTrashClick={this.handleTrashClick}
+              onStartClick={this.handleStartClick}
+              onStopClick={this.handleStopClick}
+            />
+            <ToggleableTimerForm onFormSubmit={this.handleCreateFormSubmit} />
+          </div>
+        )}
+      </div>
+    );
+  }
 }
