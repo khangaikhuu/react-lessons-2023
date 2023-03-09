@@ -33,3 +33,11 @@ Content-Type: application/json
     "lastName": "McKenzie",
     "gender": "F"
 }
+
+###
+GET http://ishop.mn:8080/api/popular HTTP/1.1
+Content-Type: application/json
+
+
+
+###
