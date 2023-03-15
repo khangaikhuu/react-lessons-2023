@@ -1,25 +1,38 @@
-GET http://ishop.mn:8282/users HTTP/1.1
+###
+GET http://localhost:8282/users HTTP/1.1
 Content-Type: application/json
 
 ###
 
-POST http://ishop.mn:8282/user HTTP/1.1
+POST http://localhost:8282/user HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "khangaikhuu",
-    "email": "khangaikhuu@gmail.com",
-    "createdOn": "2010-01-01"
+    "name": "Simon Sinek",
+    "email": "simon-sinek@gmail.com",
+    "createdOn": "2010-01-01",
+    "lastLogin": "2022-02-03"
 }
 
 ###
 
 
-DELETE  http://ishop.mn:8282/user HTTP/1.1
+DELETE  http://localhost:8282/user HTTP/1.1
 Content-Type: application/json
 
 {
   "id" : "641142664a7a656c8ec4c167"
 }
+
+###
+
+GET http://localhost:8282/userByName HTTP/1.1
+Content-Type: application/json
+
+###
+
+
+GET http://localhost:8282/userByEmail HTTP/1.1
+Content-Type: application/json
 
 ###
