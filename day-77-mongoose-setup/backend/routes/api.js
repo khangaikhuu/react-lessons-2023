@@ -2,6 +2,12 @@ const express = require("express");
 const User = require("../models/Users");
 const Router = express.Router();
 
+Router.get("/users", async (request, response) => {
+  const result = await User.find({});
+  console.log(result);
+  response.json({ data: result });
+});
+
 Router.post("/user", async (request, response) => {
   const body = request.body;
 
@@ -13,12 +19,42 @@ Router.post("/user", async (request, response) => {
   });
 });
 
+Router.get("/user", async (request, response) => {
+  const userId = request.query.id;
+  console.log(userId);
+
+  const user = await User.findOne({ _id: userId });
+
+  response.json({
+    data: user,
+  });
+});
+
+// Get User by Email
+Router.get("/userByEmail", async (request, response) => {
+  const userEmail = request.query.email;
+
+  const foundUser = await User.find({ email: userEmail }, "_id name email", {
+    sort: { lastLogin: -1 },
+  }).exec();
+
+  response.json({
+    data: foundUser,
+  });
+});
+
+Router.get("/userGetEmail", async (request, response) => {
+  const userEmail = request.query.email;
+
+  const foundUser = await User.findByUserEmail(userEmail);
+
+  response.json({
+    data: foundUser,
+  });
+});
+
 Router.get("/userByName", async (request, response) => {
-  const result = await User.findOne(
-    { name: "Simon Sinek" }, // users called Simon Sinek
-    null, // returning all fields in model
-    { sort: { lastLogin: -1 } } // sorted by lastLogin descending
-  );
+  const result = await User.find({});
 
   response.json({
     data: result,
@@ -31,12 +67,6 @@ Router.get("/userByEmail", async (request, response) => {
   response.json({
     data: result,
   });
-});
-
-Router.get("/users", async (request, response) => {
-  const result = await User.find({});
-  console.log(result);
-  response.json({ data: result });
 });
 
 Router.put("/updateOneUser", async (request, response) => {
