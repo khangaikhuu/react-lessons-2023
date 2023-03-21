@@ -42,16 +42,30 @@ app.get("/", (request, response) => {
   response.send("<h1>Day - 80: Hello File Upload Multer</h1>");
 });
 
-app.post("/fileUpload", upload.single("image"), (request, response, next) => {
-  // console.log(request.file);
-  const imgs = [];
+app.get("/files", (request, response) => {
+  const filesPath = [];
+
   fs.readdirSync("./uploads/").forEach((file) => {
     console.log(file);
-    const fileUrl = `http://localhost:8080/uploads/${file}`;
-    imgs.push(fileUrl);
+    const url = `http://localhost:8080/uploads/${file}`;
+    filesPath.push(url);
+  });
+
+  response.send({
+    data: filesPath,
+  });
+});
+
+app.post("/fileUpload", upload.single("image"), (request, response, next) => {
+  // console.log(request.file);
+  const filesPath = [];
+  fs.readdirSync("./uploads/").forEach((file) => {
+    console.log(file);
+    const url = `http://localhost:8080/uploads/${file}`;
+    filesPath.push(url);
   });
   response.json({
-    data: imgs,
+    data: filesPath,
   });
 });
 
