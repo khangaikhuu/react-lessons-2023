@@ -3,6 +3,8 @@ console.log("Day 80 - File Upload Multer");
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
+const fs = require("fs");
+var path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -21,6 +23,16 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
 app.use(cors());
+
+app.get("/files", async (request, response) => {
+  const testFolder = "./uploads/";
+
+  fs.readdirSync(testFolder).forEach((file) => {
+    console.log(file);
+  });
+
+  response.send("<h1>Day - 80: Hello File Upload Multer</h1>");
+});
 
 app.get("/", (request, response) => {
   response.send("<h1>Day - 80: Hello File Upload Multer</h1>");
