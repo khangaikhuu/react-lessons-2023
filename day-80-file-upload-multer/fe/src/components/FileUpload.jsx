@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 export default function FileUpload() {
   const URL = "http://localhost:8080/fileUpload";
+  const [imageURLs, setImageURLs] = useState([]);
 
   const handleFileUpload = async (event) => {
     event.preventDefault();
@@ -15,7 +18,9 @@ export default function FileUpload() {
 
     const FETCHED_DATA = await fetch(URL, options);
     const FETCHED_JSON = await FETCHED_DATA.json();
+
     console.log(FETCHED_JSON);
+    setImageURLs(FETCHED_JSON.data);
   };
   return (
     <div>
@@ -27,7 +32,17 @@ export default function FileUpload() {
         <input type="file" name="image" />
         <button type="submit">Submit</button>
       </form>
-      <img src="http://localhost:8080/uploads/node-babel-js-01.png" />
+      <table border="1">
+        <thead>
+          <th>Nr</th>
+          <th>Image</th>
+        </thead>
+        <tbody>
+          {imageURLs.map((img) => (
+            <img src={img} alt="img" />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
