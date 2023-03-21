@@ -1,0 +1,20 @@
+POST http://localhost:8080/create HTTP/1.1
+Content-Type: application/json
+
+[
+    {
+        "name": "Washing Dishes",
+        "checked" : false
+    },
+    {
+        "name": "Groceries",
+        "checked" : false
+    },
+    {
+        "name": "Bathing Kids",
+        "checked" : false
+    }
+]
+
+
+###
