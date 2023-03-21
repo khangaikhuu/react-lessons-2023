@@ -4,6 +4,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Users = require("./models/Users");
+const auth = require("./middleware/auth");
 
 const PORT = 8080;
 const MONGO_CONNECTION_STRING =
@@ -95,6 +96,18 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.post("/protected", auth, (req, res, next) => {
+  res.status(200).json({
+    data: "successful got the protected route",
+  });
+});
+
+app.post("/unprotected", (req, res, next) => {
+  res.status(200).json({
+    data: "successful got the unprotected route",
+  });
 });
 
 app.listen(PORT, () => {
