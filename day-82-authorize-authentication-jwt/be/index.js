@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const Users = require("./models/Users");
 
 const PORT = 8080;
@@ -18,37 +19,82 @@ app.get("/", (request, response) => {
   });
 });
 
-app.post("/register", async (request, response) => {
-  console.log(request.body.password);
-  const hashedPassword = await bcrypt.hash(request.body.password, 10);
-  if (hashedPassword) {
-    const user = new Users({
-      email: request.body.email,
-      password: hashedPassword,
-    });
-
-    const savedUser = await user.save();
-    if (savedUser) {
-      response.status(201).send({
-        message: "User Created Successfully",
-        savedUser,
-      });
-    } else {
-      response.status(500).send({
-        message: "Error creating user",
+// register endpoint
+app.post("/register", async (req, res) => {
+  const data = req.body;
+  if (data) {
+    const oldUser = await Users.findOne({ email: data.email });
+    if (oldUser) {
+      return res.status(400).json({
+        success: false,
+        status: "Хэрэглэгч аль хэдийн үүссэн байна. Нэвтэрч орно уу.",
       });
     }
+    var hashedPassword = await bcrypt.hash(data.password, 10);
+
+    data.password = hashedPassword;
+
+    Users.create(data)
+      .then((data) => {
+        res.status(201).json({
+          message: "Хэрэглэгч амжилттай үүслээ",
+          data,
+        });
+        return;
+      })
+      .catch((error) => {
+        res.status(500).json({
+          success: false,
+          error: error,
+        });
+      });
   } else {
-    response.status(500).send({
-      message: "Password was not hashed successfully",
+    return res.json({
+      error: "The input field is empty",
     });
   }
 });
 
-app.post("/login", (request, response) => {
-  response.json({
-    data: [],
-  });
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!(email && password)) {
+      res.status(400).json({
+        success: false,
+        status: "Утгуудаа бүрэн оруулна уу.",
+        updated: 1,
+        email: email,
+        password: password,
+      });
+      return;
+    }
+    const user = await Users.findOne({ email });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = jwt.sign(
+        { user_id: user._id, email },
+        "MySuperDuperPrivateKey",
+        {
+          expiresIn: "2h",
+        }
+      );
+      res.status(200).json({
+        success: true,
+        status: "Амжилттай нэвтэрлээ.",
+        data: user,
+        token: token,
+      });
+      return;
+    }
+    res.status(400).json({
+      success: false,
+      status: "Нууц үг нэр хоорондоо таарахгүй байна.",
+    });
+    return;
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(PORT, () => {
