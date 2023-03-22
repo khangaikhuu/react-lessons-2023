@@ -2,17 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const app = express();
-const PORT = 8080;
+require("dotenv").config();
 
-const MONGO_CONNECTION_STRING =
-  "mongodb+srv://xxxxxx:xxxxxx@mern-black.kosj6y7.mongodb.net/test";
+const app = express();
+
+const PORT = process.env.PORT;
+const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
 
 app.use(express.json());
 app.use(cors());
 
 app.get("/", (request, response) => {
-  response.send("<h1>Hello Environment Variable</h1>");
+  response.send("<h1>Hello from Render.com</h1>");
 });
 
 app.listen(PORT, () => {
