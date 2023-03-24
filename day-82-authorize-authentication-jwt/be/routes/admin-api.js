@@ -4,10 +4,12 @@ const adminApi = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Users = require("../models/Users");
+const UserRole = require("../models/UserRole");
 
 // register endpoint
 adminApi.post("/register", async (req, res) => {
   const data = req.body;
+  console.log(req.body);
   if (data) {
     const oldUser = await Users.findOne({ email: data.email });
     if (oldUser) {
@@ -83,4 +85,20 @@ adminApi.post("/login", async (req, res) => {
   }
 });
 
+adminApi.post("/role/create", async (req, res) => {
+  const { name } = req.body;
+
+  const result = await UserRole.create({ name });
+
+  res.status(200).json({
+    data: result,
+  });
+});
+
+adminApi.get("/role/list", async (req, res) => {
+  const result = await UserRole.find({});
+  res.status(200).json({
+    data: result,
+  });
+});
 module.exports = adminApi;
