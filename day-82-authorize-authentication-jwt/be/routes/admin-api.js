@@ -35,21 +35,6 @@ adminApi.post("/register", async (req, res) => {
         error: error,
       });
     }
-
-    // Users.create(data)
-    //   .then((data) => {
-    //     res.status(201).json({
-    //       message: "Хэрэглэгч амжилттай үүслээ",
-    //       data,
-    //     });
-    //     return;
-    //   })
-    //   .catch((error) => {
-    //     res.status(500).json({
-    //       success: false,
-    //       error: error,
-    //     });
-    //   });
   } else {
     return res.json({
       error: "The input field is empty",
