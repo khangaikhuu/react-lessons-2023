@@ -1,7 +1,7 @@
 import Cookies from "universal-cookie";
 
 // Login component for the login page
-import React, { useState } from "react";
+import React from "react";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 
