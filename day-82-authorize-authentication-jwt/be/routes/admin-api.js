@@ -22,20 +22,34 @@ adminApi.post("/register", async (req, res) => {
 
     data.password = hashedPassword;
 
-    Users.create(data)
-      .then((data) => {
-        res.status(201).json({
-          message: "Хэрэглэгч амжилттай үүслээ",
-          data,
-        });
-        return;
-      })
-      .catch((error) => {
-        res.status(500).json({
-          success: false,
-          error: error,
-        });
+    try {
+      const user = await Users.create(data);
+      const result = await user.populate("userrole");
+      res.status(201).json({
+        message: "Хэрэглэгч амжилттай үүслээ",
+        data: result,
       });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        error: error,
+      });
+    }
+
+    // Users.create(data)
+    //   .then((data) => {
+    //     res.status(201).json({
+    //       message: "Хэрэглэгч амжилттай үүслээ",
+    //       data,
+    //     });
+    //     return;
+    //   })
+    //   .catch((error) => {
+    //     res.status(500).json({
+    //       success: false,
+    //       error: error,
+    //     });
+    //   });
   } else {
     return res.json({
       error: "The input field is empty",

@@ -1,13 +1,25 @@
 import { useEffect, useState } from "react";
+
 export default function Register() {
   const ROLE_URL = "http://localhost:8080/admin/role/list";
   const REGISTER_URL = "http://localhost:8080/admin/register";
 
+  const initialFormData = Object.freeze({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    phone: "",
+    userrole: 0,
+    address: "",
+  });
+
   const [roles, setRoles] = useState([]);
+  const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
     fetchRoles();
-  }, []);
+  }, [formData]);
 
   const fetchRoles = async () => {
     const FETCHED_DATA = await fetch(ROLE_URL);
@@ -15,16 +27,23 @@ export default function Register() {
     setRoles(FETCHED_JSON.data);
   };
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+    console.log(formData);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target);
-
-    const dataForm = new FormData(e.currentTarget);
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
-      body: JSON.stringify(dataForm),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     };
 
     const FETCHED_DATA = await fetch(REGISTER_URL, options);
@@ -44,36 +63,40 @@ export default function Register() {
         }}
       >
         <label htmlFor="firstname"> First Name:</label>
-        <input name="firstname" type="text" />
+        <input name="firstname" type="text" onChange={handleChange} />
         <label htmlFor="lastname">
           {" "}
           Last Name:
-          <input name="lastname" type="text" />
+          <input name="lastname" type="text" onChange={handleChange} />
         </label>
         <label htmlFor="email">
           Email:
-          <input name="email" type="email" />
+          <input name="email" type="email" onChange={handleChange} />
         </label>
         <label htmlFor="password">
           {" "}
           Password:
-          <input name="password" type="password" />
+          <input name="password" type="password" onChange={handleChange} />
         </label>
         <label htmlFor="phone">
           {" "}
           Phone:
-          <input name="phone" type="number" />
+          <input name="phone" type="number" onChange={handleChange} />
         </label>
         <label>
           Roles:
-          <select name="roles">
+          <select name="userrole" onChange={handleChange}>
             {roles &&
-              roles.map((role) => <option id={role._id}>{role.name}</option>)}
+              roles.map((role, idx) => (
+                <option key={idx} id={role._id} value={role._id}>
+                  {role.name}
+                </option>
+              ))}
           </select>
         </label>
         <label htmlFor="address">
           Address:
-          <textarea name="address" />
+          <textarea name="address" onChange={handleChange} />
         </label>
         <button type="submit">Submit Register</button>
       </form>
