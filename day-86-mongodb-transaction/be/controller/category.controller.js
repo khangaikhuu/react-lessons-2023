@@ -1,6 +1,6 @@
 const Category = require('../models/Category');
 
-export async function getAllCategories(req, res) {
+exports.getAllCategories = async (req, res) => {
     try {
         const categories = await Category.find();
         res.json({status: true, categories});
@@ -9,7 +9,7 @@ export async function getAllCategories(req, res) {
     }
 }
 
-export async function createCategory(req, res) {
+exports.createCategory = async (req, res) => {
     try {
         const category = await Category.create(req.body);
         res.json({status: true, category});
@@ -18,7 +18,7 @@ export async function createCategory(req, res) {
     }
 }
 
-export async function updateCategory(req, res) {
+exports.updateCategory = async (req, res) =>  {
     try {
         const category = await Category.findByIdAndUpdate(req.params.id, req.body, {new: true});
         res.json({status: true, category});
@@ -27,7 +27,7 @@ export async function updateCategory(req, res) {
     }
 }
 
-export async function deleteCategory(req, res) {
+exports.deleteCategory = async (req, res) => {
     try {
         const category = await Category.findByIdAndDelete(req.params.id);
         res.json({status: true, category});

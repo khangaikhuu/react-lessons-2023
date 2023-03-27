@@ -1,22 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
+const categoryApi = require('./routes/category.routes');
+const productApi = require('./routes/product.routes');
 
 const app = express();
 const port = process.env.PORT;
 const MONGO_DB_URL = process.env.MONGO_DB_URL;
-
-const categoryApi = require('./routes/category.routes');
-const productApi = require('./routes/product.routes');
 
 app.use(express.json());
 app.use(cors());
 
 app.use('/product', productApi);
 app.use('/category', categoryApi);
-
-const mongoose = require('mongoose');
-
 
 app.listen(port, () => {
     mongoose
