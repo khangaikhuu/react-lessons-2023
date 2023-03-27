@@ -1,0 +1,36 @@
+
+POST http://localhost:8080/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "simon-sine7@gmail.com",
+    "password": "password7"
+}
+
+###
+
+POST http://localhost:8080/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "simon-sine7@gmail.com",
+    "password": "password7"
+}
+
+###
+
+POST http://localhost:8080/protected HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQxOTdhY2M1OTAzOGUyNzhlZTViYmZjIiwiZW1haWwiOiJzaW1vbi1zaW5lN0BnbWFpbC5jb20iLCJpYXQiOjE2Nzk0MTIxODcsImV4cCI6MTY3OTQxOTM4N30.nGCTILL-ND4J_hByJJYaNk-OfGmUoOd6_eP9tTtkbXQ"
+}
+###
+
+POST http://localhost:8080/unprotected HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": null
+}
+###

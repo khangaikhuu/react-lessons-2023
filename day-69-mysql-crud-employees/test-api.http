@@ -1,0 +1,52 @@
+GET http://ishop.mn:8080/employees HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://ishop.mn:8080/employee HTTP/1.1
+Content-Type: application/json
+
+{
+    "birthDate": "1990-01-01",
+    "firstName": "John",
+    "lastName": "McKay",
+    "gender": "M",
+    "hireDate": "2010-01-01"
+}
+
+###
+
+DELETE http://ishop.mn:8080/employee HTTP/1.1
+Content-Type: application/json
+
+{
+    "empNo" : 500001
+}
+
+### 
+
+PUT http://ishop.mn:8080/employee HTTP/1.1
+Content-Type: application/json
+
+{
+    "empNo": 500000,
+    "lastName": "McKenzie",
+    "gender": "F"
+}
+
+###
+GET http://ishop.mn:8080/api/popular HTTP/1.1
+Content-Type: application/json
+
+
+
+###
+
+GET http://ishop.mn:8080/api/search?keyword=camera HTTP/1.1
+Content-Type: application/json
+
+
+###
+
+GET http://ishop.mn:8080/api/products HTTP/1.1
+Content-Type: application/json

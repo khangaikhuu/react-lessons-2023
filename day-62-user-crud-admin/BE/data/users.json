@@ -1,0 +1,10 @@
+[
+  {
+    "firstname": "khangaikhuu",
+    "lastname": "uvgunkhuu",
+    "email": "khangaikhuu@gmail.com",
+    "password": "$2b$10$XzMxrzU4lwfDhxrn/JhT8etfULdhu60lpgrP4V6OyHqupZyKS32uO",
+    "address": "bayangol duureg 1st khoroo 2nd khoroolol 014-1-6 toot",
+    "role": { "id": 1, "name": "Admin" }
+  }
+]
