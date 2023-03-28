@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:8080/category HTTP/1.1
+GET http://localhost:8080/category/category HTTP/1.1
 Content-Type: application/json
 
 ###
@@ -9,4 +9,13 @@ Content-Type: application/json
 
 POST http://localhost:8080/category/category HTTP/1.1
 Content-Type: application/json
+
+{ "name": "Main Food" }
+
+
+###
+
+POST http://localhost:8080/transaction/shipping HTTP/1.1
+Content-Type: application/json
+
 { "name": "Main Food" }
