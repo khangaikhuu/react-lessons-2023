@@ -5,6 +5,7 @@ console.log("Day-90: Express TypeScript");
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import theaterRouter from './routes/theaters.api';
 dotenv.config();
 
 const app: Express = express();
@@ -38,6 +39,8 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send(name);
 });
+
+app.use('/theaters', theaterRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
