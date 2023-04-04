@@ -5,6 +5,7 @@ console.log("Day-90: Express TypeScript");
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import cors from 'cors'
 import theaterRouter from './routes/theaters.api';
 dotenv.config();
 
@@ -35,6 +36,7 @@ interface Student {
 
 // name = 12;
 
+app.use(cors());
 app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send(name);
