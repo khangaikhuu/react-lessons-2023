@@ -1,3 +1,6 @@
+import NavigationBar from "@/components/navigation.bar";
+import styles from "@/styles/Home.module.css";
+
 import Link from "next/link";
 import React from "react";
 
@@ -17,7 +20,8 @@ export default function Home(props: any): JSX.Element {
 
   const side = typeof window ? "client" : "server";
   return (
-    <div>
+    <div className={styles.main}>
+      <NavigationBar />
       <div>Welcome!</div>
       <div>You're currently on the {side}-side.</div>
       <Link href="/about">About Page</Link>
