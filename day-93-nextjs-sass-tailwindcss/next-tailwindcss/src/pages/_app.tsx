@@ -4,9 +4,11 @@ import TopBar from "@/components/TopBar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class">
-      <TopBar />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <div>
+      <ThemeProvider attribute="class">
+        <TopBar />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </div>
   );
 }

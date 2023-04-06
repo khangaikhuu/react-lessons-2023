@@ -12,14 +12,16 @@ export default function ThemeSwitch() {
   if (typeof window === "undefined") return null;
 
   return (
-    <div>
-      <button
-        onClick={toggleTheme}
-        className=" dark:bg-opacity-20 dark:text-gray-50 bg-green-100 text-gray-500 pl-2 pr-2
+    <>
+      <div className="flex-center">
+        <button
+          onClick={toggleTheme}
+          className=" dark:bg-opacity-20 dark:text-gray-50 bg-green-100 text-gray-500 pl-2 pr-2
      rounded-md text-xs p-1"
-      >
-        Toggle Theme
-      </button>
-    </div>
+        >
+          Toggle Theme
+        </button>
+      </div>
+    </>
   );
 }
