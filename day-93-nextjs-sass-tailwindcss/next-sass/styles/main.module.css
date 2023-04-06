@@ -1,0 +1,70 @@
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  display: block;
+  padding: 6px 12px;
+  font-size: xx-large;
+  text-decoration: none;
+}
+
+.info {
+  background: DarkGray;
+  box-shadow: 0 0 1px rgba(169, 169, 169, 0.25);
+  color: #fff;
+}
+
+.alert {
+  background: DarkRed;
+  box-shadow: 0 0 1px rgba(139, 0, 0, 0.25);
+  color: #fff;
+}
+
+.success {
+  background: DarkGreen;
+  box-shadow: 0 0 1px rgba(0, 100, 0, 0.25);
+  color: #fff;
+}
+
+ul:nth-child(3n+1) {
+  background-color: #004080;
+}
+
+ul:nth-child(3n+2) {
+  background-color: #004d99;
+}
+
+ul:nth-child(3n+3) {
+  background-color: #0059b3;
+}
+
+.square-av {
+  width: 100px;
+  height: 100px;
+}
+
+.circle-av {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+/*# sourceMappingURL=main.module.css.map */

@@ -1,0 +1,79 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: gray;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  background-color: #fff;
+}
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+
+      a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+      }
+    }
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    font-size: xx-large;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+@mixin theme($theme: DarkGray) {
+  background: $theme;
+  box-shadow: 0 0 1px rgba($theme, 0.25);
+  color: #fff;
+}
+
+.info {
+  @include theme;
+}
+.alert {
+  @include theme($theme: DarkRed);
+}
+.success {
+  @include theme($theme: DarkGreen);
+}
+
+$base-color: #036;
+
+@for $i from 1 through 3 {
+  ul:nth-child(3n + #{$i}) {
+    background-color: lighten($base-color, $i * 5%);
+  }
+}
+
+$size: 5;
+@mixin avatar($size, $circle: false) {
+  width: $size;
+  height: $size;
+
+  @if $circle {
+    border-radius: calc($size / 2);
+  }
+}
+
+.square-av {
+  @include avatar(100px, $circle: false);
+}
+.circle-av {
+  @include avatar(100px, $circle: true);
+}
