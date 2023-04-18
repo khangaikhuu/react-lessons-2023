@@ -29,11 +29,12 @@ export class TodosService {
     return result;
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
+  update(id: string, updateTodoDto: UpdateTodoDto) {
     return `This action updates a #${id} todo`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  async remove(id: string): Promise<Todo> {
+    const result = await this.todoModel.findByIdAndDelete(id);
+    return result;
   }
 }
