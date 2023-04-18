@@ -2,11 +2,11 @@ console.log("Day-90: Express TypeScript");
 
 // const express = require("express");
 // const mongoose = require("mongoose");
-import express, { Express, Request, Response } from 'express'
-import dotenv from 'dotenv'
-import mongoose from 'mongoose'
-import cors from 'cors'
-import theaterRouter from './routes/theaters.api';
+import express, { Express, Request, Response } from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import theaterRouter from "./routes/theaters.api";
 dotenv.config();
 
 const app: Express = express();
@@ -28,11 +28,10 @@ sheepObject.name = "sheep2";
 sheepObject.age = 2; // error
 
 interface Student {
-  name: string,
-  age: number,
-  isVerified: boolean,
+  name: string;
+  age: number;
+  isVerified: boolean;
 }
-
 
 // name = 12;
 
@@ -42,7 +41,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send(name);
 });
 
-app.use('/theaters', theaterRouter)
+app.use("/theaters", theaterRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
