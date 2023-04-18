@@ -9,24 +9,24 @@ import { Todo } from '../models/todo.model';
 export class TodosService {
   constructor(@InjectModel('Todo') private readonly todoModel: Model<Todo>) {}
 
-  async create(createTodoDto: CreateTodoDto) {
+  async create(createTodoDto: CreateTodoDto): Promise<Todo> {
     if (createTodoDto.title === '') {
       throw new BadRequestException('Title is required');
     }
 
     const newTodo = new this.todoModel(createTodoDto);
     const result = await newTodo.save();
-    console.log(result);
-    return [];
+    return result;
   }
 
-  async findAll() {
+  async findAll(): Promise<Todo[]> {
     const result = await this.todoModel.find({});
     return result;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
+  async findOne(id: string): Promise<Todo> {
+    const result = await this.todoModel.findById(id);
+    return result;
   }
 
   update(id: number, updateTodoDto: UpdateTodoDto) {

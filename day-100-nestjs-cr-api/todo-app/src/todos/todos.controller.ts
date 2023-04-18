@@ -10,24 +10,25 @@ import {
 import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { Todo } from 'src/models/todo.model';
 
 @Controller('todos')
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Post()
-  create(@Body() createTodoDto: CreateTodoDto) {
+  create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
     return this.todosService.create(createTodoDto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Todo[]> {
     return this.todosService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.todosService.findOne(+id);
+  findOne(@Param('id') id: string): Promise<Todo> {
+    return this.todosService.findOne(id);
   }
 
   @Patch(':id')
