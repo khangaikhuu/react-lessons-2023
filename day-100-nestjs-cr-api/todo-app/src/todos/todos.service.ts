@@ -29,7 +29,7 @@ export class TodosService {
     return result;
   }
 
-  async update(id: string, updateTodoDto: UpdateTodoDto) {
+  async update(id: string, updateTodoDto: UpdateTodoDto): Promise<Todo> {
     const todo = await this.todoModel.findOneAndUpdate(
       { _id: id },
       updateTodoDto,
