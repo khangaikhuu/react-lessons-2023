@@ -1,0 +1,36 @@
+{
+  "name": "mongodb-node-crud-example",
+  "version": "1.0.0",
+  "description": "Sample Node.js CRUD project for the MongoDB and npm article",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mongodb-developer/mongodb-node-crud-example.git"
+  },
+  "keywords": [
+    "mongodb",
+    "node",
+    "npm",
+    "crud",
+    "atlas"
+  ],
+  "author": "Stanimira Vlaeva",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/mongodb-developer/mongodb-node-crud-example/issues"
+  },
+  "homepage": "https://github.com/mongodb-developer/mongodb-node-crud-example#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.18.2",
+    "mongodb": "^4.2.1"
+  },
+  "devDependencies": {
+    "jest": "^27.4.3"
+  }
+}
